@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo
 {
@@ -19,7 +20,7 @@ namespace WebFormsCommerceDemo
 		{
 			Guid testId;
 			int ProductId = 0;
-			if (Guid.TryParse(Generics.IfNullString(Session["UniqueKey"]), out testId) && int.TryParse(Generics.IfNullString(e.CommandArgument), out ProductId))
+			if (Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId) && int.TryParse(Generics.IfNullString(e.CommandArgument), out ProductId))
 			{
 				if (Mediator.doAddCartItem(ProductId))
 				{

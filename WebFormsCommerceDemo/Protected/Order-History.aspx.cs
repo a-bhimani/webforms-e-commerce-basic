@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Web.UI.WebControls;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo.Protected
 {
@@ -12,7 +12,7 @@ namespace WebFormsCommerceDemo.Protected
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if (Guid.TryParse(Generics.IfNullString(Session["UniqueKey"]), out testId))
+			if (Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId))
 			{
 				dbCtx = new SrvContext();
 				this.FetchOrderHistory();

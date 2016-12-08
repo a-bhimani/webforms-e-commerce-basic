@@ -60,6 +60,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.RedisSessionStateProvider, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.RedisSessionStateProvider.2.2.2\lib\net40\Microsoft.Web.RedisSessionStateProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis.StrongName, Version=1.0.316.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.0.488\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -134,6 +142,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images\logo.png" />
     <Content Include="Login.aspx" />
     <Content Include="Protected\Order-History.aspx" />
     <Content Include="Protected\Account.aspx" />
@@ -160,6 +169,16 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="map1.Master" />
+    <Content Include="uploads\ProductImages\20-104-543-02.jpg" />
+    <Content Include="uploads\ProductImages\20-147-467-07.jpg" />
+    <Content Include="uploads\ProductImages\20-367-053-02.jpg" />
+    <Content Include="uploads\ProductImages\22-178-951-01.jpg" />
+    <Content Include="uploads\ProductImages\22-236-971-14.jpg" />
+    <Content Include="uploads\ProductImages\40-121-127-02.jpg" />
+    <Content Include="uploads\ProductImages\A19P_1_20160315654271355.jpg" />
+    <Content Include="uploads\ProductImages\A5UX_1_20151009542368338.jpg" />
+    <Content Include="uploads\ProductImages\A6UM_130675353958918979i7E0PwjzSP.jpg" />
+    <Content Include="uploads\ProductImages\A91N_1_20151119571971395.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -173,6 +192,12 @@
     <Content Include="submap1.Master" />
     <Content Include="Static\static1.Master" />
     <Content Include="Protected\protected1.Master" />
+    <None Include="Properties\PublishProfiles\WebFormsCommerce - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\WebFormsCommerce - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -199,6 +224,11 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SrvContext.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Protected\Order-History.aspx.cs">
       <DependentUpon>Order-History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,7 +301,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

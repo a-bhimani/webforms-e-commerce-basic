@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo.Protected
 {
@@ -21,7 +20,7 @@ namespace WebFormsCommerceDemo.Protected
 		protected void Page_InitComplete(object sender, EventArgs e)
 		{
 			Guid testId;
-			string UserUUID = Generics.IfNullString(Session["UniqueKey"]);
+			string UserUUID = Generics.IfNullString(Default.AppUserUniqueKey);
 			if (Guid.TryParse(UserUUID, out testId))
 			{
 				dbCtx = new SrvContext();

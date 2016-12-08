@@ -7,7 +7,7 @@ namespace WebFormsCommerceDemo.Models
 		public SrvContext()
 			: base("ConnHddShoppePrimary")
 		{
-
+			//Database.SetInitializer<SrvContext>(null);
 		}
 
 		public virtual DbSet<Category> Categories { get; set; }

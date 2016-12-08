@@ -4,6 +4,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo
 {
@@ -17,9 +18,10 @@ namespace WebFormsCommerceDemo
 		protected void Page_Init(object sender, EventArgs e)
 		{
 			txtSearch.Value = Request.QueryString["q"];
-			if (Guid.TryParse(Generics.IfNullString(Session["UniqueKey"]), out testId))
+			if (Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId))
 			{
-				PrintUsername = Generics.IfNullString(Session["Username"]);
+				//PrintUsername = Generics.IfNullString();
+				PrintUsername = "abhimani@hawk.iit.edu";
 				//vwCart.Visible = true;
 				vwUser.Visible = true;
 				vwLogin.Visible = false;
@@ -62,9 +64,9 @@ namespace WebFormsCommerceDemo
 
 		protected void btnLogout_Click(object sender, EventArgs e)
 		{
-			Session.Clear();
-			Session.Abandon();
-			FormsAuthentication.SignOut();
+			//Session.Clear();
+			//Session.Abandon();
+			//FormsAuthentication.SignOut();
 			Response.Redirect("/Login/?logout=true");
 		}
 

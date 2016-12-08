@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo.Protected
 {
@@ -58,7 +55,7 @@ namespace WebFormsCommerceDemo.Protected
 		protected void btnAddToCart_Click(object sender, EventArgs e)
 		{
 			Guid testId;
-			if (Guid.TryParse(Generics.IfNullString(Session["UniqueKey"]), out testId))
+			if (Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId))
 			{
 				if (Mediator.doAddCartItem(product_id))
 				{

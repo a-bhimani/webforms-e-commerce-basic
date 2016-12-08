@@ -1,0 +1,7 @@
+as02.database.windows.net
+WebFormsCommerceDatabase
+WebFormsCommerceDatabaseSQLA
+G9dcE#SSvsU3-r^R
+
+Server=tcp:as02.database.windows.net,1433;Initial Catalog=WebFormsCommerceDatabase;Persist Security Info=False;User ID=WebFormsCommerceDatabaseSQLA;Password=G9dcE#SSvsU3-r^R;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo
 {
@@ -14,7 +14,7 @@ namespace WebFormsCommerceDemo
 		{
 			Guid testId;
 			bool t = false;
-			if ((Guid.TryParse(Generics.IfNullString(HttpContext.Current.Session["UniqueKey"]), out testId)) && (ProductID > 0))
+			if ((Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId)) && (ProductID > 0))
 			{
 				SrvContext dbCtx = new SrvContext();
 				Customer cx = dbCtx.Customers
@@ -79,7 +79,7 @@ namespace WebFormsCommerceDemo
 		{
 			Guid testId;
 			bool t = false;
-			if (Guid.TryParse(Generics.IfNullString(HttpContext.Current.Session["UniqueKey"]), out testId))
+			if (Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId))
 			{
 				SrvContext dbCtx = new SrvContext();
 				Customer cx = dbCtx.Customers
@@ -131,7 +131,7 @@ namespace WebFormsCommerceDemo
 		{
 			Guid testId;
 			bool t = false;
-			if ((Guid.TryParse(Generics.IfNullString(HttpContext.Current.Session["UniqueKey"]), out testId)) && (CartItemID > 0))
+			if ((Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId)) && (CartItemID > 0))
 			{
 				SrvContext dbCtx = new SrvContext();
 				int CustomerID = dbCtx.Customers
@@ -167,7 +167,7 @@ namespace WebFormsCommerceDemo
 		{
 			//Guid testId;
 			//bool t = false;
-			//if ((Guid.TryParse(Generics.IfNullString(HttpContext.Current.Session["UniqueKey"]), out testId)) && (ProductID > 0))
+			//if ((Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId)) && (ProductID > 0))
 			//{
 			//	SrvContext dbCtx = new SrvContext();
 			//	Customer cx = dbCtx.Customers

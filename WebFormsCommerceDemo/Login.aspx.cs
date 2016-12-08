@@ -27,7 +27,7 @@ namespace WebFormsCommerceDemo
 		{
 			if (!IsPostBack)
 			{
-				Session.Abandon();
+				//Session.Abandon();
 				txtUsername.Text = string.Empty;
 				txtPassword.Text = string.Empty;
 				txtRegisterFirstName.Text = string.Empty;
@@ -52,9 +52,9 @@ namespace WebFormsCommerceDemo
 				Customer runCustomer = customer.Single();
 				if (Generics.CompareBinaries(runCustomer.PasswordBin, Generics.MakeHash(txtPassword.Text)))
 				{
-					Session["UniqueKey"] = runCustomer.UniqueKey;
-					Session["Username"] = runCustomer.Username;
-					FormsAuthentication.RedirectFromLoginPage(runCustomer.Username, true);
+					//Session["UniqueKey"] = runCustomer.UniqueKey;
+					//Session["Username"] = runCustomer.Username;
+					//FormsAuthentication.RedirectFromLoginPage(runCustomer.Username, true);
 					t = true;
 				}
 			}

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.UI.WebControls;
 using WebFormsCommerceDemo.Models;
+using static WebFormsCommerceDemo.Properties.Settings;
 
 namespace WebFormsCommerceDemo.Protected
 {
@@ -16,7 +17,7 @@ namespace WebFormsCommerceDemo.Protected
 		public IQueryable<CartItem> FetchCartItems()
 		{
 			Guid testId;
-			Guid.TryParse(Generics.IfNullString(Session["UniqueKey"]), out testId);
+			Guid.TryParse(Generics.IfNullString(Default.AppUserUniqueKey), out testId);
 			SrvContext dbCtx = new SrvContext();
 			IQueryable<CartItem> lstCartItems = dbCtx.CartItems
 																								.Where(el => (el.Customer.UniqueKey == testId)
