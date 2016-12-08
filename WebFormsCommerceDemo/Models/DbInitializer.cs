@@ -8,11 +8,11 @@ namespace WebFormsCommerceDemo.Models
 	{
 		protected override void Seed(SrvContext context)
 		{
-			//GetCategories().ForEach(c => context.Categories.Add(c));
-			//GetProducts().ForEach(p => context.Products.Add(p));
-			//GetCustomers().ForEach(c => context.Customers.Add(c));
-			//GetOrders().ForEach(o => context.Orders.Add(o));
-			//GetCartItems().ForEach(ci => context.CartItems.Add(ci));
+			GetCategories().ForEach(c => context.Categories.Add(c));
+			GetProducts().ForEach(p => context.Products.Add(p));
+			GetCustomers().ForEach(c => context.Customers.Add(c));
+			GetOrders().ForEach(o => context.Orders.Add(o));
+			GetCartItems().ForEach(ci => context.CartItems.Add(ci));
 		}
 
 		private static List<Category> GetCategories()
