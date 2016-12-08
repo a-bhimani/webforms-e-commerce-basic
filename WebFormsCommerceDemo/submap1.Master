@@ -1,0 +1,29 @@
+﻿<%@ Master MasterPageFile="~/map1.Master" Language="C#" CodeBehind="submap1.Master.cs" Inherits="WebFormsCommerceDemo.submap1" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="Viewport" runat="server">
+<!-- Sidebar Starts -->
+<div class="col-md-3">
+    <!-- Categories Links Starts -->
+    <h3 class="side-heading">Categories</h3>
+    <div class="list-group categories">
+        <asp:ListView ID="lvwCategories"  
+            ItemType="WebFormsCommerceDemo.Models.Category" 
+            runat="server"
+            SelectMethod="FetchCategories">
+            <ItemTemplate>
+                <a href="/?category_id=<%#: Item.CategoryID %>" class="list-group-item <%# (Item.CategoryID == getActiveCategoryID)? "active": "" %>">
+                    <i class="fa fa-chevron-right"></i>
+                    <%#: Item.Name %>
+                </a>
+            </ItemTemplate>
+        </asp:ListView>
+    </div>
+    <!-- Categories Links Ends -->
+</div>
+<!-- Sidebar Ends -->
+<!-- Primary Content Starts -->
+<div id="vp-2" class="col-md-9">
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+</div>
+<!-- Primary Content Ends -->
+</asp:Content>

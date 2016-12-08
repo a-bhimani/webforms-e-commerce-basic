@@ -1,0 +1,17 @@
+﻿<%@ Master MasterPageFile="~/map1.Master" CodeBehind="protected1.master.cs" Inherits="WebFormsCommerceDemo.Protected.protected1" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="Viewport" runat="server">
+<!-- Breadcrumb Starts -->
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active"><%=Page.Title %></li>
+</ol>
+<!-- Breadcrumb Ends -->
+<!-- Starts -->
+<asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+<!-- Ends -->
+</asp:Content>
+
+<asp:Content ID="PostContent" ContentPlaceHolderID="PostScripts" runat="server">
+<asp:ContentPlaceHolder ID="PostScripts" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

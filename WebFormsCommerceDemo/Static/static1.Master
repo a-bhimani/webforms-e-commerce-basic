@@ -1,0 +1,23 @@
+﻿<%@ Master MasterPageFile="~/submap1.Master" %>
+
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<!-- Breadcrumb Starts -->
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active"><%=Page.Title %></li>
+</ol>
+<!-- Breadcrumb Ends -->
+<!-- Starts -->
+    <!-- Conditions Panel Starts -->
+    <div class="panel panel-smart">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%=Page.Title %>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <!-- Conditions Panel Ends -->
+<!-- Ends -->
+</asp:Content>

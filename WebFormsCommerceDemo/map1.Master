@@ -1,0 +1,259 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="map1.Master.cs" Inherits="WebFormsCommerceDemo.map1 " %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="Ankit Bhimani" />
+<title><%: Page.Title %> - HDD Shoppe</title>
+<!-- Bootstrap Core CSS -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Web Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400" rel="stylesheet" type="text/css" />
+<!-- CSS Files -->
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/responsive.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="/assets/js/ie8-responsive-file-warning.js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<form runat="server">
+<!-- Header Section Starts -->
+<header id="header-area">
+    <!-- Main Header Starts -->
+    <div class="main-header">
+        <div class="container">
+            <div class="row">
+                <!-- Search Starts -->
+                <div class="col-md-3">
+                    <div id="search">
+                        <div class="input-group">
+                            <input type="text" runat="server" id="txtSearch" class="form-control input-lg" placeholder="Search Products" />
+                            <span class="input-group-btn">
+                                <button runat="server" id="btnSearch" onserverclick="btnSearch_Click" class="btn btn-lg" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Ends -->
+                <!-- Logo Starts -->
+                <div class="col-md-6">
+                    <div id="logo">
+                        <a href="/"><img src="/assets/images/logo.png" alt="logo" accesskey="h" class="img-responsive" /></a>
+                    </div>
+                </div>
+                <!-- Logo Starts -->
+                <!-- Shopping Cart Starts -->
+                <div class="col-md-3">
+                    <div runat="server" id="vwCart" class="btn-group btn-block">
+                        <button type="button" data-toggle="dropdown" class="btn btn-block btn-lg dropdown-toggle">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="hidden-md">Cart:</span>
+                            <span id="cart-total"><%=CartItemCount %> item(s) - <%=string.Format("{0:C}", CartItemTotal) %></span>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <asp:ListView ID="lvwCartItems"  
+                                ItemType="WebFormsCommerceDemo.Models.CartItem" 
+                                runat="server"
+                                SelectMethod="FetchCartItems">
+                                <ItemTemplate>
+                                    <table class="table hcart">
+                                        <tr>
+                                            <td class="text-center">
+                                                <a href="/Product/?product_id=<%#: Item.ProductID %>">
+                                                    <img src="<%# Item.Product.ImagePath %>" alt="image" title="image" class="cart-thumb img-thumbnail img-responsive" />
+                                                </a>
+                                            </td>
+                                            <td class="text-left">
+                                                <a href="/Product/?product_id=<%#: Item.ProductID %>"><%# Item.Product.Name %>
+                                                </a>
+                                            </td>
+                                            <td class="cart-text text-right">x <%#: Item.Quantity %></td>
+                                            <td class="cart-text text-right"><%#: string.Format("{0:C}", Item.ItemPrice) %></td>
+                                            <td class="cart-text text-center">
+                                                <asp:LinkButton runat="server" ID="btnRemoveCartItem" OnClientClick="return confirm('Are you sure you want to remove this item from the cart?');" OnCommand="btnRemoveCartItem_Click" CommandArgument="<%#: Item.CartItemID %>">
+                                                    <i class="fa fa-times"></i>
+                                                </asp:LinkButton>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ItemTemplate>
+                                <EmptyDataTemplate>
+                                    <li>
+								        <p class="text-center">Your shopping cart is empty!</p>
+							        </li>
+                                </EmptyDataTemplate>
+                            </asp:ListView>
+                            <li runat="server" id="vwCheckout" visible="false">
+                                <table class="table table-bordered total">
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-right"><strong>Sub-Total</strong></td>
+                                            <td class="text-right"><span id="cart_total"><%=string.Format("{0:C}", CartItemTotal) %></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="text-right btn-block1">
+                                    <a href="/Protected/Cart">Checkout</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Shopping Cart Ends -->
+            </div>
+        </div>
+    </div>
+    <!-- Main Header Ends -->
+    <!-- Main Menu Starts -->
+    <nav id="main-menu" class="navbar" role="navigation">
+        <div class="container">
+            <!-- Nav Header Starts -->
+            <div class="navbar-header">
+                <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-cat-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <!-- Nav Header Ends -->
+            <!-- Navbar Cat collapse Starts -->
+            <div class="collapse navbar-collapse navbar-cat-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10">Categories
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <asp:ListView ID="lvwCategories1"  
+                                ItemType="WebFormsCommerceDemo.Models.Category" 
+                                runat="server"
+                                SelectMethod="FetchCategories">
+                                <ItemTemplate>
+                                    <li><a href="/?category_id=<%#: Item.CategoryID %>"><%#: Item.Name %></a></li>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </ul>
+                    </li>
+                    <li><a href="/Static/About">About</a></li>
+                    <li><a href="/Static/Documentation">Documentation</a></li>
+                    <li><a href="/Static/Contact">Contact</a></li>
+                    <li runat="server" id="vwUser" class="dropdown active" visible="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="10"><%=PrintUsername %></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/Protected/Account">My Account</a></li>
+                            <li><a href="/Protected/Order-History">Order History</a></li>
+                            <li><asp:LinkButton runat="server" ID="btnLogout" OnClick="btnLogout_Click">Logout</asp:LinkButton></li>
+                        </ul>
+                    </li>
+                    <li runat="server" id="vwLogin" class="dropdown active" visible="true">
+                        <a href="/Login">Login / Register</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Navbar Cat collapse Ends -->
+        </div>
+    </nav>
+    <!-- Main Menu Ends -->
+</header>
+<!-- Header Section Ends -->
+<!-- Main Container Starts -->
+<div id="main-container-home" class="container">
+    <div class="row">
+        <asp:ContentPlaceHolder ID="Viewport" runat="server"></asp:ContentPlaceHolder>
+    </div>
+</div>
+<!-- Main Container Ends -->
+<!-- Footer Section Starts -->
+<footer id="footer-area">
+    <!-- Footer Links Starts -->
+    <div class="footer-links">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Information Links Starts -->
+            <div class="col-md-2 col-sm-6">
+                <h5>Information</h5>
+                <ul>
+                    <li><a href="/Static/About">About</a></li>
+                    <li><a href="/Static/Documentation">Documentaion</a></li>
+                    <li><a href="/Static/Contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Information Links Ends -->
+            <!-- My Account Links Starts -->
+            <div class="col-md-2 col-sm-6">
+                <h5>My Account</h5>
+                <ul runat="server" id="vwFooterLogin" visible="true">
+                    <li><a href="/Login">Login / Register</a></li>
+                </ul>
+                <ul runat="server" id="vwFooterUser" visible="false">
+                    <li><a href="/Protected/Account">Account Details</a></li>
+                    <li><a href="/Protected/Order-History">Order History</a></li>
+                </ul>
+            </div>
+            <!-- My Account Links Ends -->
+            <!-- Caegories Links Starts -->
+            <div class="col-md-2 col-sm-6">
+                <h5>Categories</h5>
+                <ul>
+                    <asp:ListView ID="lvwCategories2"  
+                        ItemType="WebFormsCommerceDemo.Models.Category" 
+                        runat="server"
+                        SelectMethod="FetchCategories">
+                        <ItemTemplate>
+                            <li><a href="/?category_id=<%#: Item.CategoryID %>"><%#: Item.Name %></a></li>
+                        </ItemTemplate>
+                    </asp:ListView>
+                </ul>
+            </div>
+            <!-- Caegories Links Ends -->
+            <!-- Returns Starts -->
+            <div class="col-md-4 col-sm-12 last">
+                <h5>Returns</h5>
+                <ul>
+                    <li>Please send an email to <a target="_blank" href="mailto:abhimani@hawk.iit.edu">abhimani@hawk.iit.edu</a> with your Order number.</li>
+                </ul>
+            </div>
+            <!-- Returns Ends -->
+        </div>
+        <!-- Container Ends -->
+    </div>
+    <!-- Footer Links Ends -->
+    <!-- Copyright Area Starts -->
+    <div class="copyright">
+        <!-- Container Starts -->
+        <div class="container">
+            <!-- Starts -->
+            <p class="pull-left">
+                &copy;  <%: DateTime.Now.Year %> - HDD Shoppe. Developed by <a target="_blank" href="http://ankitbhimani.in/">Ankit Bhimani</a>.
+            </p>
+            <!-- Ends -->
+        </div>
+        <!-- Container Ends -->
+    </div>
+    <!-- Copyright Area Ends -->
+</footer>
+<!-- Footer Section Ends -->
+</form>
+<!-- JavaScript Files -->
+<script src="/assets/js/jquery-1.11.1.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap-hover-dropdown.min.js"></script>
+<script src="/assets/js/custom.js"></script>
+<asp:ContentPlaceHolder runat="server" ID="PostScripts"></asp:ContentPlaceHolder>
+</body>
+</html>
+
